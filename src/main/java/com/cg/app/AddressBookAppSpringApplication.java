@@ -3,11 +3,14 @@ package com.cg.app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class AddressBookAppSpringApplication {
+import lombok.extern.slf4j.Slf4j;
 
+@SpringBootApplication
+@Slf4j
+public class AddressBookAppSpringApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AddressBookAppSpringApplication.class, args);
+		log.info("asfd");
 	}
 
 }

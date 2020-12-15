@@ -20,6 +20,7 @@ import com.cg.app.model.AddressBookData;
 import com.cg.app.service.IAddressBookService;
 
 @RestController
+@RequestMapping("/addressbookservice")
 public class AddressBookController {
 
 	@Autowired

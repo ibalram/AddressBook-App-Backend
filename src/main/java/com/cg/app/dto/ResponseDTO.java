@@ -1,5 +1,8 @@
 package com.cg.app.dto;
 
+import lombok.Data;
+
+@Data
 public class ResponseDTO {
 	private String message;
 	private Object data;
