@@ -3,6 +3,7 @@ package com.cg.app.service;
 import java.util.List;
 
 import com.cg.app.dto.AddressBookDTO;
+import com.cg.app.exceptions.AddressBookException;
 import com.cg.app.model.AddressBookData;
 
 public interface IAddressBookService {

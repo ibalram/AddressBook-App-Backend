@@ -15,12 +15,23 @@ import com.cg.app.dto.ResponseDTO;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-	@ExceptionHandler
+	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ResponseDTO> handleMethodArgumentException(MethodArgumentNotValidException exception) {
 		List<ObjectError> errorList = exception.getBindingResult().getAllErrors();
 		List<String> errMsg = errorList.stream().map(errObj -> errObj.getDefaultMessage()).collect(Collectors.toList());
 		ResponseDTO respDTO = new ResponseDTO("Exceptions during REST call", errMsg);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.BAD_REQUEST);
-
+	}
+	
+	@ExceptionHandler(AddressBookException.class)
+	public final ResponseEntity<ResponseDTO> handleAddressBookException(AddressBookException exception){
+		ResponseDTO respDTO = new ResponseDTO("Exception during REST call", exception.getMessage());
+		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public final ResponseEntity<ResponseDTO> anonymousException(Exception e) {
+		ResponseDTO status = new ResponseDTO("Exception during REST call", e.getMessage());
+		return new ResponseEntity<ResponseDTO>(status, HttpStatus.BAD_REQUEST);
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.cg.app.dto.AddressBookDTO;
+import com.cg.app.exceptions.AddressBookException;
 import com.cg.app.model.AddressBookData;
 
 @Service
@@ -20,7 +21,11 @@ public class AddressBookService implements IAddressBookService {
 
 	@Override
 	public AddressBookData getAddressBookDataById(Long id) {
-		return addressBookList.get((int) (id - 1));
+		try {
+			return addressBookList.get((int) (id - 1));
+		}catch(Exception e) {
+			throw new AddressBookException("Not Found");
+		}
 	}
 
 	@Override
