@@ -26,7 +26,7 @@ import com.cg.app.service.IAddressBookService;
 public class AddressBookController {
 
 	@Autowired
-	IAddressBookService addressBookService;
+	private IAddressBookService addressBookService;
 
 	@RequestMapping(value = { "", "/", "/get" })
 	public ResponseEntity<ResponseDTO> getAddressBookData() {
@@ -37,16 +37,14 @@ public class AddressBookController {
 
 	@GetMapping("/get/{id}")
 	public ResponseEntity<ResponseDTO> getAddressBookData(@PathVariable("id") Long id) {
-		AddressBookData addressData = null;
-		addressData = addressBookService.getAddressBookDataById(id);
+		AddressBookData addressData = addressBookService.getAddressBookDataById(id);
 		ResponseDTO respDTO = new ResponseDTO("Get Call Success for id: " + id, addressData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 
 	@PostMapping("/create")
 	public ResponseEntity<ResponseDTO> addAddressBookData(@Valid @RequestBody AddressBookDTO addressBookDTO) {
-		AddressBookData addressData = null;
-		addressData = addressBookService.createAddressBookData(addressBookDTO);
+		AddressBookData addressData = addressBookService.createAddressBookData(addressBookDTO);
 		ResponseDTO respDTO = new ResponseDTO("Created Successfully for: " + addressBookDTO, addressData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
@@ -54,8 +52,7 @@ public class AddressBookController {
 	@PutMapping("/update/{id}")
 	public ResponseEntity<ResponseDTO> updateAddressBookData(@PathVariable Long id,
 			@Valid @RequestBody AddressBookDTO addressBookDTO) {
-		AddressBookData addressData = null;
-		addressData = addressBookService.updateAddressBookData(id, addressBookDTO);
+		AddressBookData addressData = addressBookService.updateAddressBookData(id, addressBookDTO);
 		ResponseDTO respDTO = new ResponseDTO("Created Successfully for: " + addressBookDTO, addressData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}

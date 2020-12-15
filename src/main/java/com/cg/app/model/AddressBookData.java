@@ -1,10 +1,13 @@
 package com.cg.app.model;
 
+import javax.persistence.Entity;
+
 import com.cg.app.dto.AddressBookDTO;
 
 import lombok.Data;
 
 @Data
+@Entity
 public class AddressBookData {
 
 	private Long id;
