@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.app.dto.AddressBookDTO;
 import com.cg.app.dto.ResponseDTO;
 import com.cg.app.model.AddressBookData;
-import com.cg.app.service.AddressBookService;
+import com.cg.app.service.IAddressBookService;
 
 @RestController
 public class AddressBookController {
 
 	@Autowired
-	AddressBookService addressBookService;
+	IAddressBookService addressBookService;
 
 	@RequestMapping(value = { "", "/", "/get" })
 	public ResponseEntity<ResponseDTO> getAddressBookData() {
@@ -48,10 +48,11 @@ public class AddressBookController {
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 
-	@PutMapping("/update")
-	public ResponseEntity<ResponseDTO> updateAddressBookData(@RequestBody AddressBookDTO addressBookDTO) {
+	@PutMapping("/update/{id}")
+	public ResponseEntity<ResponseDTO> updateAddressBookData(@PathVariable Long id,
+			@RequestBody AddressBookDTO addressBookDTO) {
 		AddressBookData addressData = null;
-		addressData = addressBookService.updateAddressBookData(addressBookDTO);
+		addressData = addressBookService.updateAddressBookData(id, addressBookDTO);
 		ResponseDTO respDTO = new ResponseDTO("Created Successfully for: " + addressBookDTO, addressData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}

@@ -11,36 +11,43 @@ import com.cg.app.model.AddressBookData;
 @Service
 public class AddressBookService implements IAddressBookService {
 
+	private List<AddressBookData> addressBookList = new ArrayList<>();
+
 	@Override
 	public List<AddressBookData> getAllAddressBookData() {
-		List<AddressBookData> addressBookList = new ArrayList<>();
-		addressBookList.add(new AddressBookData(1, new AddressBookDTO("Balram", "Singh", "Jaipur", "Jaipur",
-				"Rajasthan", "301234", "+91 9469091234", "balram@gmail.com")));
 		return addressBookList;
 	}
 
 	@Override
-	public AddressBookData getAddressBookDataById(long id) {
-		AddressBookData addressBookData = new AddressBookData(1, new AddressBookDTO("Balram", "Singh", "Jaipur",
-				"Jaipur", "Rajasthan", "301234", "+91 9469091234", "balram@gmail.com"));
-		return addressBookData;
+	public AddressBookData getAddressBookDataById(Long id) {
+		return addressBookList.get((int) (id - 1));
 	}
 
 	@Override
 	public AddressBookData createAddressBookData(AddressBookDTO addressBookDTO) {
-		AddressBookData addressBookData = new AddressBookData(2, addressBookDTO);
+		AddressBookData addressBookData = new AddressBookData(addressBookList.size() + 1, addressBookDTO);
+		addressBookList.add(addressBookData);
 		return addressBookData;
 	}
 
 	@Override
-	public AddressBookData updateAddressBookData(AddressBookDTO addressBookDTO) {
-		AddressBookData addressBookData = new AddressBookData(2, addressBookDTO);
+	public AddressBookData updateAddressBookData(Long id, AddressBookDTO addressBookDTO) {
+		AddressBookData addressBookData = this.getAddressBookDataById(id);
+		addressBookData.setFirstName(addressBookDTO.firstName);
+		addressBookData.setLastName(addressBookDTO.lastName);
+		addressBookData.setAddress(addressBookDTO.address);
+		addressBookData.setCity(addressBookDTO.city);
+		addressBookData.setState(addressBookDTO.state);
+		addressBookData.setZip(addressBookDTO.zip);
+		addressBookData.setPhoneNumber(addressBookDTO.phoneNumber);
+		addressBookData.setEmail(addressBookDTO.email);
+		addressBookList.set((int) (id - 1), addressBookData);
 		return addressBookData;
 	}
 
 	@Override
-	public void deleteAddressBookDataById(long id) {
-
+	public void deleteAddressBookDataById(Long id) {
+		addressBookList.remove((int) (id - 1));
 	}
 
 }
