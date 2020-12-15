@@ -6,7 +6,7 @@ import javax.validation.constraints.Pattern;
 public class AddressBookDTO {
 	
 	@NotEmpty
-	@Pattern(regexp = "^[A-Z]{1}[a-zA-Z]{2,}( [A-Z]{1}[a-zA-Z]{2,})*$")
+	@Pattern(regexp = "^[A-Z]{1}[a-zA-Z]{2,}( [A-Z]{1}[a-zA-Z]{2,})*$", message = "Invalid Name")
 	public String fullName;
 	public String address;
 	public String city;
