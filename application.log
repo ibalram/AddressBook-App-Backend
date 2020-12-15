@@ -1,0 +1,6 @@
+2020-12-15 11:45:51.885  INFO 4980 --- [restartedMain] c.c.app.AddressBookAppSpringApplication  : Starting AddressBookAppSpringApplication using Java 15 on DESKTOP-GNF0N31 with PID 4980 (D:\capgemini_fullstack_fellowship\AddressBookAppSpring\target\classes started by balra in D:\capgemini_fullstack_fellowship\AddressBookAppSpring)
+2020-12-15 11:45:51.887 DEBUG 4980 --- [restartedMain] c.c.app.AddressBookAppSpringApplication  : Running with Spring Boot v2.4.1, Spring v5.3.2
+2020-12-15 11:45:51.887  INFO 4980 --- [restartedMain] c.c.app.AddressBookAppSpringApplication  : No active profile set, falling back to default profiles: default
+2020-12-15 11:45:58.164  WARN 4980 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-15 11:45:58.541  INFO 4980 --- [restartedMain] c.c.app.AddressBookAppSpringApplication  : Started AddressBookAppSpringApplication in 7.138 seconds (JVM running for 9.572)
+2020-12-15 11:45:58.544  INFO 4980 --- [restartedMain] c.c.app.AddressBookAppSpringApplication  : Address Book App Started!

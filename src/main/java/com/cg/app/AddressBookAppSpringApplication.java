@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AddressBookAppSpringApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AddressBookAppSpringApplication.class, args);
-		log.info("asfd");
+		log.info("Address Book App Started!");
 	}
 
 }
