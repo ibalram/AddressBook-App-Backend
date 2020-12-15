@@ -33,14 +33,12 @@ public class AddressBookService implements IAddressBookService {
 	@Override
 	public AddressBookData updateAddressBookData(Long id, AddressBookDTO addressBookDTO) {
 		AddressBookData addressBookData = this.getAddressBookDataById(id);
-		addressBookData.setFirstName(addressBookDTO.firstName);
-		addressBookData.setLastName(addressBookDTO.lastName);
+		addressBookData.setFullName(addressBookDTO.fullName);
 		addressBookData.setAddress(addressBookDTO.address);
 		addressBookData.setCity(addressBookDTO.city);
 		addressBookData.setState(addressBookDTO.state);
 		addressBookData.setZip(addressBookDTO.zip);
 		addressBookData.setPhoneNumber(addressBookDTO.phoneNumber);
-		addressBookData.setEmail(addressBookDTO.email);
 		addressBookList.set((int) (id - 1), addressBookData);
 		return addressBookData;
 	}

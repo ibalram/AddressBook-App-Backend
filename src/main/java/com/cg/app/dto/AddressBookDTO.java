@@ -1,33 +1,27 @@
 package com.cg.app.dto;
 
 public class AddressBookDTO {
-	public String firstName;
-	public String lastName;
+	public String fullName;
 	public String address;
 	public String city;
 	public String state;
 	public String zip;
 	public String phoneNumber;
-	public String email;
 
-	public AddressBookDTO(String firstName, String lastName, String address, String city, String state, String zip,
-			String phoneNumber, String email) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public AddressBookDTO(String fullName, String address, String city, String state, String zip,
+			String phoneNumber) {
+		this.fullName = fullName;
 		this.address = address;
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
 		this.phoneNumber = phoneNumber;
-		this.email = email;
 	}
 
 	@Override
 	public String toString() {
-		return "AddressBookDTO [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city="
-				+ city + ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", email=" + email
-				+ "]";
+		return "AddressBookDTO [fullName=" + fullName + ", address=" + address + ", city=" + city + ", state=" + state
+				+ ", zip=" + zip + ", phoneNumber=" + phoneNumber + "]";
 	}
-	
 
 }
