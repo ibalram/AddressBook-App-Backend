@@ -1,37 +1,43 @@
 package com.cg.app.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.app.dto.AddressBookDTO;
 import com.cg.app.exceptions.AddressBookException;
 import com.cg.app.model.AddressBookData;
+import com.cg.app.repository.AddressBookRepository;
 
 @Service
 public class AddressBookService implements IAddressBookService {
 
-	private List<AddressBookData> addressBookList = new ArrayList<>();
+	@Autowired
+	private AddressBookRepository addressBookRepository;
 
 	@Override
 	public List<AddressBookData> getAllAddressBookData() {
-		return addressBookList;
+		return addressBookRepository.findAll().stream().collect(Collectors.toList());
 	}
 
 	@Override
 	public AddressBookData getAddressBookDataById(Long id) {
 		try {
-			return addressBookList.get((int) (id - 1));
-		}catch(Exception e) {
+			return addressBookRepository.findById(id).get();
+		} catch (Exception e) {
 			throw new AddressBookException("Not Found");
 		}
 	}
 
 	@Override
 	public AddressBookData createAddressBookData(AddressBookDTO addressBookDTO) {
-		AddressBookData addressBookData = new AddressBookData(addressBookList.size() + 1, addressBookDTO);
-		addressBookList.add(addressBookData);
+		List<AddressBookData> dataList = addressBookRepository.findByFullName(addressBookDTO.fullName);
+		if (dataList.size() > 0)
+			throw new AddressBookException("Already Exist with the same name");
+		AddressBookData addressBookData = new AddressBookData(addressBookDTO);
+		addressBookRepository.save(addressBookData);
 		return addressBookData;
 	}
 
@@ -44,13 +50,14 @@ public class AddressBookService implements IAddressBookService {
 		addressBookData.setState(addressBookDTO.state);
 		addressBookData.setZip(addressBookDTO.zip);
 		addressBookData.setPhoneNumber(addressBookDTO.phoneNumber);
-		addressBookList.set((int) (id - 1), addressBookData);
+		addressBookRepository.save(addressBookData);
 		return addressBookData;
 	}
 
 	@Override
 	public void deleteAddressBookDataById(Long id) {
-		addressBookList.remove((int) (id - 1));
+		AddressBookData addressBookData = this.getAddressBookDataById(id);
+		addressBookRepository.deleteById(addressBookData.getId());
 	}
 
 }
