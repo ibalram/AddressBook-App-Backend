@@ -32,6 +32,14 @@ public class AddressBookService implements IAddressBookService {
 	}
 
 	@Override
+	public AddressBookData getAddressBookDataByName(String name) {
+		List<AddressBookData> dataList = addressBookRepository.findByFullName(name);
+		if (dataList.size() == 0)
+			throw new AddressBookException("Not Found");
+		return dataList.get(0);
+	}
+
+	@Override
 	public AddressBookData createAddressBookData(AddressBookDTO addressBookDTO) {
 		List<AddressBookData> dataList = addressBookRepository.findByFullName(addressBookDTO.fullName);
 		if (dataList.size() > 0)

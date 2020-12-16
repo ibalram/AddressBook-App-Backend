@@ -11,6 +11,8 @@ public interface IAddressBookService {
 	List<AddressBookData> getAllAddressBookData();
 
 	AddressBookData getAddressBookDataById(Long id);
+	
+	AddressBookData getAddressBookDataByName(String name);
 
 	AddressBookData createAddressBookData(AddressBookDTO addressBookDTO);
 
