@@ -27,14 +27,4 @@ public class AddressBookDTO {
 	@Pattern(regexp = "^[0-9]{1,}[ ][1-9][0-9]{9}$", message = "Invalid phone number")
 	public String phoneNumber;
 
-	public AddressBookDTO(String fullName, String address, String city, String state, String zip,
-			String phoneNumber) {
-		this.fullName = fullName;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-		this.phoneNumber = phoneNumber;
-	}
-
 }
