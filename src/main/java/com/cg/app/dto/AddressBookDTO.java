@@ -1,5 +1,6 @@
 package com.cg.app.dto;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
@@ -15,10 +16,10 @@ public class AddressBookDTO {
 	@Pattern(regexp = "^[a-zA-Z0-9-, ]+", message= "Invalid address")
 	public String address;
 	
-	@Pattern(regexp = "^[A-Z]{1}[a-z]{2,}$", message= "Invalid city")
+	@NotBlank(message = "City is required")
 	public String city;
 	
-	@Pattern(regexp = "^[A-Z]{1}[a-z]{2,}$", message= "Invalid state")
+	@NotBlank(message = "State is required")
 	public String state;
 	
 	@Pattern(regexp = "^[0-9]{2,}", message = "Invalid zip number")

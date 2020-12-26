@@ -24,13 +24,13 @@ import com.cg.app.service.IAddressBookService;
 
 @RestController
 @RequestMapping("/addressbookservice")
-@CrossOrigin(origins =  {"http://localhost:4001"})
+@CrossOrigin(origins = { "http://localhost:4001" })
 public class AddressBookController {
 
 	@Autowired
 	private IAddressBookService addressBookService;
 
-	@RequestMapping(value = { "", "/", "/get" })
+	@GetMapping(value = { "", "/", "/get" })
 	public ResponseEntity<ResponseDTO> getAddressBookData() {
 		List<AddressBookData> addressDataList = addressBookService.getAllAddressBookData();
 		ResponseDTO respDTO = new ResponseDTO("Get Call Successfull", addressDataList);
@@ -43,7 +43,7 @@ public class AddressBookController {
 		ResponseDTO respDTO = new ResponseDTO("Get Call Success for id: " + id, addressData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/name/{name}")
 	public ResponseEntity<ResponseDTO> getAddressBookData(@PathVariable("name") String name) {
 		AddressBookData addressData = addressBookService.getAddressBookDataByName(name);
